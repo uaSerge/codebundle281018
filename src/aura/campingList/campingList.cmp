@@ -1,0 +1,42 @@
+<aura:component controller="CampingListController">
+    <aura:attribute name="items" type="Camping_Item__c[]"/>
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+    <aura:handler name="addItem" event="c:addItemEvent"
+        action="{!c.handleAddItem}"/>
+
+    <lightning:layout>
+        <lightning:layoutItem padding="around-small" size="6">
+        <!-- [[ item form goes here ]] -->
+             <!-- CREATE NEW ITEM -->
+    <div aria-labelledby="newitemform">
+        <!-- BOXED AREA -->
+        <fieldset class="slds-box slds-theme--default slds-container--small">
+        <legend id="newitemform" class="slds-text-heading--small 
+          slds-p-vertical--medium">
+          Add Item
+        </legend>
+  
+        <!-- CREATE NEW ITEM FORM -->
+        <lightning:layout>
+        	<lightning:layoutItem padding="around-small" size="12">
+            	<c:campingListForm />
+        	</lightning:layoutItem>
+    	</lightning:layout>
+        <!-- / CREATE NEW ITEM FORM -->
+  
+      </fieldset>
+      <!-- / BOXED AREA -->
+    </div>
+    <!-- / CREATE NEW ITEM -->
+        </lightning:layoutItem>
+    </lightning:layout>
+    <!-- / NEW ITEM FORM -->
+
+    <lightning:card title="Items">
+        <p class="slds-p-horizontal--small" size="6">
+            <aura:iteration items="{!v.items}" var="item">
+                <c:campingListItem item="{!item}"/>
+            </aura:iteration>
+        </p>
+    </lightning:card>
+</aura:component>

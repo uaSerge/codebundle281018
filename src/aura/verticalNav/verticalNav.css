@@ -1,0 +1,10 @@
+/**
+ * Created by Serhii on 23.10.2018.
+ */
+.THIS .slds-col .ui-widget {
+    margin: 16px 0;
+}
+
+.THIS .slds-col.content {
+    width: 1140px;
+}

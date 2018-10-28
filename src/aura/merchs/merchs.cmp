@@ -1,0 +1,66 @@
+<!--
+ - Created by Serhii on 23.10.2018.
+ -->
+
+<aura:component controller="MerchController" implements="forceCommunity:availableForAllPageTypes" access="global">
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+    <aura:handler name="addItemCart" event="c:changeMerchEvent"
+                  action="{!c.addCart}"/>
+    <aura:handler name="editItemCart" event="c:changeMerchEvent"
+                  action="{!c.editCart}"/>
+    <aura:handler name="dellItemCart" event="c:changeMerchEvent"
+                  action="{!c.dellCart}"/>
+    <aura:attribute name="merchs" type="Merchandise__c[]"/>
+    <aura:attribute name="merchsBuy" type="Merchandise__c[]"/>
+
+    <form>
+        <div>
+            <lightning:button label="Monitors"
+                              onclick="{!c.changeMerchMons}" disabled="false"/>
+            <lightning:button label="Notebooks"
+                              onclick="{!c.changeMerchNotes}" disabled="false"/>
+            <lightning:button label="Mouses"
+                              onclick="{!c.changeMerchMouses}" disabled="false"/>
+            <lightning:button label="Keyboards"
+                              onclick="{!c.changeMerchKes}" disabled="false"/>
+            <lightning:button label="ALL"
+                              onclick="{!c.doInit}" disabled="false"/>
+        </div>
+        <lightning:layout>
+            <lightning:layoutItem padding="around-small" size="8">
+                <p>
+                    TOTAL QUANTITY IN CATEGORY
+                    <ui:outputText aura:id="categoryName" value=""/>
+                    :
+                    <lightning:formattedNumber aura:id="sumQuantity" value=""/>
+                </p>
+
+                <c:merchList items="{!v.merchs}"/>
+
+            </lightning:layoutItem>
+
+
+            <lightning:layoutItem padding="around-small" size="6">
+                <lightning:card title="Shopping Cart" iconName="standard:scan_card">
+                    <form>
+
+                        <c:merchListBuy items="{!v.merchsBuy}"/>
+
+                        <div>
+                            <ui:outputText class="slds-p-horizontal--small" value="TOTAL PRICE:"/>
+                            <lightning:formattedNumber aura:id="sumCart" value="0" style="currency"/>
+                        </div>
+                        <div class="slds-p-horizontal--small">
+                            <lightning:button label="BUY!!!"
+                                              onclick="{!c.submit}"
+                                              disabled="false"/>
+                            <lightning:button label="CLEAR"
+                                              onclick="{!c.clear}"
+                                              disabled="false"/>
+                        </div>
+                    </form>
+                </lightning:card>
+            </lightning:layoutItem>
+        </lightning:layout>
+    </form>
+</aura:component>

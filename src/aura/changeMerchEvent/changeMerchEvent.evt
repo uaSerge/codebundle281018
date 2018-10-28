@@ -1,0 +1,7 @@
+<!--
+ - Created by Serhii on 24.10.2018.
+ -->
+
+<aura:event type="COMPONENT" description="changeMerchEvent">
+    <aura:attribute name="item" type="Merchandise__c"/>
+</aura:event>

@@ -1,0 +1,32 @@
+<!--
+ - Created by Serhii on 23.10.2018.
+ -->
+
+<aura:component controller="MerchController" implements="forceCommunity:themeLayout">
+    <!--aura:handler name="init" action="{!c.doInit}" value="{!this}"/-->
+    <aura:attribute name="search" type="Aura.Component[]"/>
+    <aura:attribute name="sidebarFooter" type="Aura.Component[]"/>
+    <!--aura:attribute name="merchandises" type="Merchandise__c[]"/-->
+    <div class="slds-grid slds-grid--align-center">
+        <div class="slds-col">
+            <div class="slds-grid slds-grid--vertical">
+                <div class="slds-col">
+                    <div class="logoContainer"></div>
+                </div>
+                <!--div class="slds-col">
+                    {!v.search}
+                </div>
+                <div class="slds-col">
+                    <placeholder for navigation >
+                    <c:verticalNav></c:verticalNav>
+                </div>
+                <div class="slds-col">
+                    {!v.sidebarFooter}
+                </div-->
+            </div>
+        </div>
+        <div class="slds-col content">
+            {!v.body}
+        </div>
+    </div>
+</aura:component>

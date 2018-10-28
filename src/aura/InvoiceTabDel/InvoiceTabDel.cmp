@@ -1,0 +1,36 @@
+<aura:component controller="DelinvoiceExt" implements="lightning:actionOverride,force:hasSObjectName,force:lightningQuickAction,force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global" >
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="invs" type="Invoice__c[]"/>
+    <div class="slds-grid">
+        <div class="slds-col slds-p-horizontal_small slds-size_1-of-2 slds-medium-size_5-of-6 slds-large-size_8-of-12"></div>
+        <div class="slds-col slds-size_1-of-8 allBtn"><lightning:button label="Delete Selected"
+                                                                        iconName="utility:delete"
+                                                                        iconPosition="left"
+                                                                        variant="destructive"
+                                                                        onclick="{!c.dell}">
+        </lightning:button></div>
+    </div>
+
+    <table class="slds-table slds-table--bordered slds-table--striped slds-table--cell-buffer slds-table--fixed-layout">
+        <thead>
+        <tr class="slds-text-heading--label">
+            <th scope="row" style="width: 50px;" class="slds-text-align--right"><ui:inputCheckbox aura:id="cbox" class="cBox" change="{!c.all}"/></th>
+            <th scope="row"><div class="slds-truncate" title="ID">ID</div></th>
+            <th scope="row"><div class="slds-truncate" titile="NAME">Name</div></th>
+            <th scope="row"><div class="slds-truncate" title="Status">Status</div></th>
+            <th scope="row"><div class="slds-truncate" title="Invoice Total">Invoice Total</div></th>
+        </tr>
+        </thead>
+        <tbody>
+        <aura:iteration items="{!v.invs}" var="i">
+            <tr>
+                <td><ui:inputCheckbox aura:id="cboxRow" text="{!i.Id}" class="cBox" change="{!c.all}"/></td>
+                <th><div class="slds-truncate">{!i.Id}</div></th>
+                <td><div class="slds-truncate">{!i.Name}</div></td>
+                <td><div class="slds-truncate">{!i.Status__c}</div></td>
+                <td><div class="slds-truncate">{!i.Invoice_Total__c}</div></td>
+            </tr>
+        </aura:iteration>
+        </tbody>
+    </table>
+</aura:component>

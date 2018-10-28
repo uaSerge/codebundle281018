@@ -1,0 +1,18 @@
+<apex:page controller="NewCaseListController">
+     <apex:form >
+        <apex:pageBlock title="Case List" id="case_list">
+            
+            <!-- Contacts List -->
+			<apex:repeat value="{! NewCases }" var="case">
+            <apex:pageBlockSection >
+        <li>
+            <apex:outputLink value="/{!case.id}">
+         {!case.id}   
+       </apex:outputLink>
+         </li>
+                </apex:pageBlockSection>
+            </apex:repeat>
+            
+         </apex:pageBlock>
+    </apex:form>
+</apex:page>

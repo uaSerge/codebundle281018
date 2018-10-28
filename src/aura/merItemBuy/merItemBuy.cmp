@@ -1,0 +1,32 @@
+<!--
+ - Created by Serhii on 24.10.2018.
+ -->
+
+<aura:component description="merItemBuy">
+    <aura:registerEvent name="dellItemCart" type="c:changeMerchEvent"/>
+    <aura:registerEvent name="editItemCart" type="c:changeMerchEvent"/>
+    <aura:attribute name='item' type='Merchandise__c' required='true'/>
+    <!--lightning:card title="{!v.item.Name}" iconName="standard:scan_card"-->
+
+    <p>
+        Name : {!v.item.Name},
+    </p>
+    <p>Category : {!v.item.Category__c},
+    </p>
+    <p>
+        Price:
+        <lightning:formattedNumber value="{!v.item.Price__c}" style="currency"/>
+    </p>
+    <p>
+        <lightning:input type="number" name="myNumber" aura:id="quantityBuyTwo"
+                         min="1" step="1" messageWhenRangeUnderflow="Enter an amount that's at least 1."
+                         label="Quantity:" value="{!v.item.Quantity__c}" onchange="{!c.changeSum}"/>
+    </p>
+    <div>
+        <lightning:button label="Cancel"
+                          onclick="{!c.cancel}"
+                          disabled="false"/>
+    </div>
+
+
+</aura:component>

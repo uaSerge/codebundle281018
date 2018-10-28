@@ -1,0 +1,7 @@
+<aura:component controller="DelinvoiceExt" implements="lightning:actionOverride,force:hasSObjectName,force:lightningQuickAction,force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global" >
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="invs" type="Invoice__c[]"/>
+
+
+    <lightning:button variant="brand" label="Delete All" onclick="{!c.dell}"/>
+</aura:component>

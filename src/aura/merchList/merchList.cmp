@@ -1,0 +1,14 @@
+<!--
+ - Created by Serhii on 24.10.2018.
+ -->
+
+<aura:component description="merchList">
+    <aura:attribute name="items" type="Merchandise__c[]"/>
+
+    <p class="slds-p-horizontal--small">
+        <aura:iteration items="{!v.items}" var="item">
+            <c:merItem item="{!item}"/>
+        </aura:iteration>
+    </p>
+
+</aura:component>

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override updated by Lightning App Builder during activation.</comment>
+        <content>Invoice_del</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Description__c</fullName>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <length>80</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Invoice_Total__c</fullName>
+        <description>общая цена для всего Заказа</description>
+        <externalId>false</externalId>
+        <label>Invoice Total</label>
+        <summarizedField>Invoice_Line_Item__c.Total__c</summarizedField>
+        <summaryForeignKey>Invoice_Line_Item__c.Invoice__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Open</fullName>
+                    <default>false</default>
+                    <label>Open</label>
+                </value>
+                <value>
+                    <fullName>Negotiating</fullName>
+                    <default>false</default>
+                    <label>Negotiating</label>
+                </value>
+                <value>
+                    <fullName>Pending</fullName>
+                    <default>false</default>
+                    <label>Pending</label>
+                </value>
+                <value>
+                    <fullName>Closed</fullName>
+                    <default>false</default>
+                    <label>Closed</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>Invoice</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Invoice_Total__c</columns>
+        <columns>Status__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>INV-{0000}</displayFormat>
+        <label>Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Invoice</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Status__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Invoice_Total__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CREATEDBY_USER.ALIAS</customTabListAdditionalFields>
+        <listViewButtons>Delete_all</listViewButtons>
+        <lookupDialogsAdditionalFields>Status__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Invoice_Total__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>OWNER.ALIAS</lookupDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>Status__c</searchFilterFields>
+        <searchFilterFields>Invoice_Total__c</searchFilterFields>
+        <searchFilterFields>CREATEDBY_USER</searchFilterFields>
+        <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Invoice_Total__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CREATEDBY_USER</searchResultsAdditionalFields>
+        <searchResultsCustomButtons>Delete_all</searchResultsCustomButtons>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+    <webLinks>
+        <fullName>Delete_all</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Delete all</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/9.0/connection.js&quot;)} 
+
+var records = {!GETRECORDIDS( $ObjectType.Event )}; 
+var taskRecords = {!GETRECORDIDS( $ObjectType.Task)}; 
+records = records.concat(taskRecords); 
+
+
+if (records[0] == null) { 
+alert(&quot;Please select at least one record.&quot;) } 
+else { 
+
+var errors = []; 
+var result = sforce.connection.deleteIds(records); 
+if (result &amp;&amp; result.length){ 
+var numFailed = 0; 
+var numSucceeded = 0; 
+for (var i = 0; i &lt; result.length; i++){ 
+var res = result[i]; 
+if (res &amp;&amp; res.success == &apos;true&apos;){ 
+numSucceeded++; 
+} else { 
+var es = res.getArray(&quot;errors&quot;); 
+if (es.length &gt; 0) { 
+errors.push(es[0].message); 
+} 
+numFailed++; 
+} 
+} 
+if (numFailed &gt; 0){ 
+alert(&quot;Failed: &quot; + numFailed + &quot;\nSucceeded: &quot; + numSucceeded + &quot; \n Due to: &quot; + errors.join(&quot;\n&quot;)); 
+} else { 
+alert(&quot;Number of records deleted: &quot; + numSucceeded); 
+} 
+} 
+window.location.reload(); 
+}</url>
+    </webLinks>
+</CustomObject>
