@@ -6,8 +6,6 @@
     <aura:registerEvent name="dellItemCart" type="c:changeMerchEvent"/>
     <aura:registerEvent name="editItemCart" type="c:changeMerchEvent"/>
     <aura:attribute name='item' type='Merchandise__c' required='true'/>
-    <!--lightning:card title="{!v.item.Name}" iconName="standard:scan_card"-->
-
     <p>
         Name : {!v.item.Name},
     </p>
