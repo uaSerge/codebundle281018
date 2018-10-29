@@ -3,7 +3,7 @@
  */
 
 public with sharing class MerchController {
-
+//main controller of web shop
     @AuraEnabled
     public static List<Merchandise__c> getMerchandises() {
         String[] fieldsToCheck = new String[]{
@@ -49,7 +49,6 @@ public with sharing class MerchController {
     }
 
     public static List<Merchandise__c> getCategory(String categoryString) {
-
 // Check to make sure all fields are accessible to this user
         String[] fieldsToCheck = new String[]{
                 'Id', 'Name', 'Picture__c', 'Category__c', 'Description__c',

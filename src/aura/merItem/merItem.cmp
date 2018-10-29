@@ -3,6 +3,7 @@
  -->
 
 <aura:component description="merItem">
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
     <aura:registerEvent name="addItemCart" type="c:changeMerchEvent"/>
     <aura:attribute name='item' type='Merchandise__c' required='true'/>
     <lightning:card title="{!v.item.Name}" iconName="standard:scan_card">
@@ -23,7 +24,7 @@
         </p>
         <p  class="slds-p-horizontal--small">
             Quantity:
-            <lightning:formattedNumber value="{!v.item.Quantity__c}"/>
+            <lightning:formattedNumber aura:id="quantityReal" value="0"/>
 
             <lightning:input type="number" name="myNumber"  formatter="number" aura:id="quantityBuy"
                              min="1" step="1" max="{!v.item.Quantity__c}"

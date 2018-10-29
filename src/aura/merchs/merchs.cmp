@@ -40,7 +40,7 @@
             </lightning:layoutItem>
 
 
-            <lightning:layoutItem padding="around-small" size="6">
+            <lightning:layoutItem padding="around-small" size="4">
                 <lightning:card title="Shopping Cart" iconName="standard:scan_card">
                     <form>
 

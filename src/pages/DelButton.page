@@ -1,3 +1,3 @@
 <apex:page standardController="Invoice__c" id="theList" extensions="DelButtonController" recordSetVar="invoices"  action="{!delAll}">
-
+<!--invoices list dell button-->
 </apex:page>
