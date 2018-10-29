@@ -7,11 +7,13 @@ public with sharing class DelinvoiceExt {
     public static void delAll() {
         System.debug('delAll');
         List<Invoice__c> invoiceList = [SELECT ID FROM Invoice__c];
-        try {
-            delete invoiceList;
-        } catch (Exception ex)
-        {
-            throw new AuraHandledException(ex.getMessage());
+        if (Schema.sObjectType.Invoice__c.isDeletable()) {
+            try {
+                delete invoiceList;
+            } catch (Exception ex)
+            {
+                throw new AuraHandledException(ex.getMessage());
+            }
         }
     }
 

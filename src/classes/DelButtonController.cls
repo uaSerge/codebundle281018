@@ -15,11 +15,13 @@ public with sharing class DelButtonController {
     public PageReference delAll() {
         String url = 'https://codebundle3-dev-ed.lightning.force.com/lightning/o/Invoice__c/list?filterName=All';
         System.debug('delAll');
-        try {
-            delete invoiceList;
-        } catch (Exception ex)
-        {
-            throw new AuraHandledException(ex.getMessage());
+        if (Schema.sObjectType.Invoice__c.isDeletable()) {
+            try {
+                delete invoiceList;
+            } catch (Exception ex)
+            {
+                throw new AuraHandledException(ex.getMessage());
+            }
         }
         return new PageReference(url);
     }
