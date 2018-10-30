@@ -77,14 +77,19 @@ public with sharing class MerchController {
             List <Invoice_Line_Item__c> lineItems = new List<Invoice_Line_Item__c>();
             for (Merchandise__c merch : merchandises) {
                 if (merch.Quantity__c > 0 && merch.Quantity__c != null) {
-                    Invoice_Line_Item__c item = new Invoice_Line_Item__c(Invoice__c = inv.id,
-                            Merchandise__c = merch.id, Quantity__c = merch.Quantity__c, Unit_Price__c = merch.Price__c);
+                    Invoice_Line_Item__c item = new Invoice_Line_Item__c(
+                            Invoice__c = inv.id,
+                            Merchandise__c = merch.id,
+                            Quantity__c = merch.Quantity__c,
+                            Unit_Price__c = merch.Price__c
+                    );
                     lineItems.add(item);
                     System.debug('Invoice_Line_Item__c' + item);
-                }
+                } else throw new AuraHandledException('Incorrect value of merchandises');
             }
-            insert lineItems;
-            upsert inv;
+            if (lineItems.size()>0) {
+                insert lineItems;
+            } else throw new AuraHandledException('Incorrect value of merchandises');
         }
     }
 }

@@ -8,8 +8,8 @@ public class MerchControllerTest {
         categ[1] = 'Monitors';
         categ[2] = 'Mouses';
         categ[3] = 'Notebooks';
-        for (Integer i = 0; i < 4; i++) {
-            merchList[i] = new Merchandise__c(Name = 'TestMerch' + i, Category__c = categ[i], Quantity__c = i);
+        for (Integer i = 0; i < merchList.size(); i++) {
+            merchList[i] = new Merchandise__c(Name = 'TestMerch' + i, Category__c = categ[i], Quantity__c = i+1);
         }
         insert merchList;
     }
@@ -17,7 +17,7 @@ public class MerchControllerTest {
     @isTest static void TestGetMerchandises() {
         newMerch();
         Merchandise__c[] merchList = MerchController.getMerchandises();
-        System.assertEquals(merchList.isEmpty(), false);
+        System.assert(!merchList.isEmpty());
     }
 
 
@@ -25,28 +25,28 @@ public class MerchControllerTest {
         newMerch();
         Merchandise__c[] merchList = MerchController.getNotes();
         System.assertEquals(merchList.isEmpty(), false);
-        System.assertEquals(merchList[0].Category__c, 'Notebooks');
+        System.assertEquals('Notebooks', merchList[0].Category__c);
     }
 
     @isTest static void TestgetMons() {
         newMerch();
         Merchandise__c[] merchList = MerchController.getMons();
         System.assertEquals(merchList.isEmpty(), false);
-        System.assertEquals(merchList[0].Category__c, 'Monitors');
+        System.assertEquals('Monitors', merchList[0].Category__c);
     }
 
     @isTest static void TestgetKes() {
         newMerch();
         Merchandise__c[] merchList = MerchController.getKes();
         System.assertEquals(merchList.isEmpty(), false);
-        System.assertEquals(merchList[0].Category__c, 'Keyboards');
+        System.assertEquals('Keyboards', merchList[0].Category__c);
     }
 
     @isTest static void TestgetMouses() {
         newMerch();
         Merchandise__c[] merchList = MerchController.getMouses();
         System.assertEquals(merchList.isEmpty(), false);
-        System.assertEquals(merchList[0].Category__c, 'Mouses');
+        System.assertEquals('Mouses', merchList[0].Category__c);
     }
 
     @isTest static void TestCreateInvoice() {
@@ -54,9 +54,9 @@ public class MerchControllerTest {
         Merchandise__c[] merchList = MerchController.getMerchandises();
         MerchController.createInvoice(merchList);
         List<Invoice_Line_Item__c> ili = [SELECT Invoice__c, Merchandise__c, Quantity__c FROM Invoice_Line_Item__c ];
-        for (Integer i = 0; i < 3; i++) {
+        for (Integer i = 0; i < 4; i++) {
             System.assertEquals(ili[i].Quantity__c, i + 1);
-            System.assertEquals(ili[i].Merchandise__c, merchList[i + 1].id);
+            System.assertEquals(ili[i].Merchandise__c, merchList[i].id);
         }
     }
 
